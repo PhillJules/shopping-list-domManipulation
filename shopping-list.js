@@ -8,22 +8,29 @@ function addToList() {
 
   const newItem = input.value;
     input.value = "";
+    input.focus();
   const listItem = document.createElement("li");
-  let itemNAme = document.createElement("span");
-  itemNAme.textContent = newItem;
+  let itemName = document.createElement("span");
+  itemName.textContent = newItem;
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
 
-  listItem.appendChild(itemNAme);
+  listItem.appendChild(itemName);
   listItem.appendChild(deleteBtn);
 
   list.appendChild(listItem);
+
+  deleteBtn.addEventListener("click", function() {
+
+    list.removeChild(listItem);
+  });
 
 }
 
 btn.addEventListener("click", addToList)
 
-function deleteItem() {
- list.removeChild(listItem);
-
-}
+input.addEventListener("keydown", function(event) {
+  if (event.keyCode === 13) {
+    addToList();
+  }
+});
